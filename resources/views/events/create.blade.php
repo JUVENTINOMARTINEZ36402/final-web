@@ -1,44 +1,64 @@
-@extends('layouts.app')
+<x-app-layout>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Crea tu evento, será el mejor. 👌😁</h2>
 
-@section('content')
-    <h2>Create an Event</h2>
-    <form method="POST" action="{{ route('events.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('events.store') }}" enctype="multipart/form-data" class="space-y-6 bg-white p-6 rounded-lg shadow-md">
         @csrf
-        <div>
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title" placeholder="Event Title" required>
+
+        <!-- Title -->
+        <div class="flex flex-col">
+            <label for="title" class="text-sm font-medium text-gray-700">Title</label>
+            <input type="text" id="title" name="title" placeholder="Event Title" required
+                   class="mt-1 p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
-        <div>
-            <label for="description">Description</label>
-            <textarea id="description" name="description" placeholder="Event Description" required></textarea>
+        <!-- Description -->
+        <div class="flex flex-col">
+            <label for="description" class="text-sm font-medium text-gray-700">Description</label>
+            <textarea id="description" name="description" placeholder="Event Description" required
+                      class="mt-1 p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
         </div>
 
-        <div>
-            <label for="event_date">Event Date & Time</label>
-            <input type="datetime-local" id="event_date" name="event_date" required>
+        <!-- Event Date & Time -->
+        <div class="flex flex-col">
+            <label for="event_date" class="text-sm font-medium text-gray-700">Event Date & Time</label>
+            <input type="datetime-local" id="event_date" name="event_date" required
+                   class="mt-1 p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
-        <div>
-            <label for="location">Location</label>
-            <input type="text" id="location" name="location" placeholder="Event Location" required>
+        <!-- Location -->
+        <div class="flex flex-col">
+            <label for="location" class="text-sm font-medium text-gray-700">Location</label>
+            <input type="text" id="location" name="location" placeholder="Event Location" required
+                   class="mt-1 p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
-        <div>
-            <label for="logo_image">Logo Image</label>
-            <input type="file" id="logo_image" name="logo_image" accept="image/*">
+        <!-- Logo Image -->
+        <div class="flex flex-col">
+            <label for="logo_image" class="text-sm font-medium text-gray-700">Logo Image</label>
+            <input type="file" id="logo_image" name="logo_image" accept="image/*"
+                   class="mt-1 p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
-        <div>
-            <label for="status">Status</label>
-            <select id="status" name="status" required>
+        <!-- Status -->
+        <div class="flex flex-col">
+            <label for="status" class="text-sm font-medium text-gray-700">Status</label>
+            <select id="status" name="status" required
+                    class="mt-1 p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 <option value="1">Active</option>
                 <option value="0">Inactive</option>
             </select>
         </div>
 
-        <div>
-            <button type="submit">Save</button>
+        <!-- Submit and Back Buttons -->
+        <div class="flex justify-end space-x-4">
+            <a href="{{ route('events.index') }}"
+               class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200 ease-in-out">
+                Back
+            </a>
+            <button type="submit"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-md shadow hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                Save
+            </button>
         </div>
     </form>
-@endsection
+</x-app-layout>
