@@ -38,19 +38,16 @@ class EventController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:1000',  // Added validation for description
+            'description' => 'required|string|max:1000',
             'event_date' => 'required|date',
             'location' => 'required|string|max:255',
-            'status' => 'required|boolean', // Added validation for status
+            'status' => 'required|boolean',
         ]);
 
-        // Save event to database
         Event::create($request->all());
 
-        // Redirect to events index page with success message
         return redirect()->route('events.index')->with('success', 'Event created successfully.');
     }
-
 
     /**
      * Display the specified event.
@@ -84,15 +81,13 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         $request->validate([
-            'title' => 'required|string|max:255',   // 'name' changed to 'title'
-            'event_date' => 'required|date',         // 'date' changed to 'event_date'
+            'title' => 'required|string|max:255',
+            'event_date' => 'required|date',
             'location' => 'required|string|max:255',
         ]);
 
-        // Update the event with the new data
         $event->update($request->all());
 
-        // Redirect back to the events index page with a success message
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');
     }
 
@@ -104,10 +99,19 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        // Delete the event
         $event->delete();
 
-        // Redirect back to the events index page with a success message
         return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
+    }
+
+    /**
+     * Show the dashboard with user information and events.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function dashboard()
+    {
+        $events = Event::all(); // Fetch events (can filter based on user preferences if needed)
+        return view('dashboard', compact('events'));
     }
 }
