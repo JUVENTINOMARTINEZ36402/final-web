@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Menú principal') }}
                     </x-nav-link>
                     <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Eventos') }}
@@ -82,7 +82,19 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{ __('Menú principal') }}
+
+                <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
+                    {{ __('Eventos') }}
+                </x-nav-link>
+
+                <x-nav-link :href="route('events.create')" :active="request()->routeIs('dashboard')">
+                    {{ __('Crear') }}
+                </x-nav-link>
+
+                <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.index')">
+                    {{ __('Boletos') }}
+                </x-nav-link>
             </x-responsive-nav-link>
         </div>
 
