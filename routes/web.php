@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TicketController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
@@ -21,5 +22,9 @@ Route::middleware('auth')->group(function () {
     // CRUD de eventos
     Route::resource('events', EventController::class);
 });
+
+Route::get('/tickets/buy/{event}', [TicketController::class, 'buy'])->name('tickets.buy');
+Route::post('/tickets/store', [TicketController::class, 'store'])->name('tickets.store');
+Route::get('/tickets', [TicketController::class, 'index'])->name('tickets.index');
 
 require __DIR__.'/auth.php';

@@ -1,6 +1,6 @@
 <!-- resources/views/events/edit.blade.php -->
 <x-app-layout>
-    <h1 class="text-2xl font-black mb-6 text-gray-800">Edit Event</h1>
+    <h1 class="text-2xl font-black mb-6 text-gray-800">Editar Evento ✏</h1>
 
     <form method="POST" action="{{ route('events.update', $event->id) }}" enctype="multipart/form-data" class="space-y-6">
         @csrf

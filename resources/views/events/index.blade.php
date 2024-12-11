@@ -1,6 +1,6 @@
 <!-- resources/views/events/index.blade.php -->
 <x-app-layout>
-    <h1 class="text-4xl font-bold text-gray-800 mb-6">Event Index</h1>
+    <h1 class="text-4xl font-bold text-gray-800 mb-6">Lista de Eventos ✅</h1>
     <ul class="space-y-4">
         @foreach($events as $event)
             <li class="flex items-center justify-between bg-white p-4 rounded-lg shadow-md">
