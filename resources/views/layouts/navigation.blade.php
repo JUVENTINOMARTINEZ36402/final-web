@@ -23,11 +23,12 @@
                     <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.index')">
                         {{ __('Mis compras') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
-                        {{ __('Eventos') }}
-                    </x-nav-link>
+                    @if(auth()->user()->role === 'admin')
+                        <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
+                            {{ __('Eventos') }}
+                        </x-nav-link>
 
-
+                    @endif
 
                 </div>
             </div>
@@ -93,9 +94,12 @@
                     {{ __('Boletos') }}
                 </x-nav-link>
 
-                <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
-                    {{ __('Eventos') }}
-                </x-nav-link>
+                @if(auth()->user()->role === 'admin')
+
+                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
+                        {{ __('Eventos') }}
+                    </x-nav-link>
+                @endif
             </x-responsive-nav-link>
         </div>
 
