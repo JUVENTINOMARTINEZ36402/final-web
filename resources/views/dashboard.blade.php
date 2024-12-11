@@ -17,8 +17,11 @@
             <h2 class="text-xl font-semibold text-black">Proximos Eventos:</h2>
             <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 @foreach($events as $event)
-                    <div class="bg-white p-4 rounded-lg shadow-md">
+                    <div class="bg-white p-4 rounded-lg shadow-md text-center">
                         <h3 class="text-lg font-semibold">{{ $event->title }}</h3>
+                        <div class="flex justify-center mt-6">
+                            <img src="{{ asset('storage/' . $event->logo_image) }}" alt="Logo de Evento" class="w-32 h-32 object-cover rounded-md">
+                        </div>
                         <p class="text-gray-600">{{ \Carbon\Carbon::parse($event->event_date)->format('d M Y') }}</p>
                         <a href="{{ route('events.show', $event->id) }}" class="text-blue-500 hover:underline">Detalles</a>
                         <a href="{{ route('tickets.buy', $event->id) }}" class="mt-2 inline-block text-white bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">

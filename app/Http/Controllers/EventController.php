@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class EventController extends Controller
 {
@@ -42,9 +44,18 @@ class EventController extends Controller
             'event_date' => 'required|date',
             'location' => 'required|string|max:255',
             'status' => 'required|boolean',
+            'logo_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validación de imagen
         ]);
 
-        Event::create($request->all());
+        $data = $request->all();
+
+        if ($request->hasFile('logo_image')) {
+            $path = $request->file('logo_image')->store('logos', 'public');
+            $data['logo_image'] = $path;
+        }
+
+
+        Event::create($data);
 
         return redirect()->route('events.index')->with('success', 'Event created successfully.');
     }
@@ -57,6 +68,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $event->logo_image_url = asset('storage/' . $event->logo_image);
         return view('events.show', compact('event'));
     }
 
@@ -82,11 +94,22 @@ class EventController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
             'event_date' => 'required|date',
             'location' => 'required|string|max:255',
+            'status' => 'required|boolean',
+            'logo_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validación de la imagen
         ]);
 
-        $event->update($request->all());
+        if ($request->hasFile('logo_image')) {
+            // Elimina la imagen anterior si existe
+            if ($event->logo_image) {
+                Storage::delete('public/' . $event->logo_image);
+            }
+            $path = $request->file('logo_image')->store('logos', 'public');
+            $event->logo_image = $path;
+        }
+        $event->update($request->except('logo_image'));
 
         return redirect()->route('events.index')->with('success', 'Event updated successfully.');
     }
@@ -99,6 +122,11 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        // Opcional: eliminar la imagen asociada
+        if ($event->logo_image && file_exists(public_path($event->logo_image))) {
+            unlink(public_path($event->logo_image));
+        }
+
         $event->delete();
 
         return redirect()->route('events.index')->with('success', 'Event deleted successfully.');

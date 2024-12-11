@@ -8,7 +8,10 @@
         @if($event->logo_image)
             <div class="mt-4">
                 <p class="text-gray-600">Logo:</p>
-                <img src="{{ asset('storage/' . $event->logo_image) }}" alt="Event Logo" class="h-40 rounded-md mt-2">
+
+                <img src="{{ asset('storage/' . $event->logo_image) }}" alt="Logo de Evento" class="w-32 h-32 object-cover rounded-md mt-2">
+
+
             </div>
         @endif
 
