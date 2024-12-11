@@ -7,7 +7,7 @@
 
     <div class="container mx-auto p-4">
         <!-- Welcome Message -->
-        <div class="bg-blue-500 text-white rounded-lg shadow-md p-6">
+        <div class="bg-purple-600 text-white rounded-lg shadow-md p-6">
             <h1 class="text-3xl font-bold">Hola, {{ Auth::user()->name }}!</h1>
             <p class="mt-4 text-lg">Bienvenido al Panel de Eventos.</p>
         </div>
