@@ -15,7 +15,7 @@
         <p class="text-gray-600 mt-2">Status: <span class="{{ $event->status ? 'text-green-600' : 'text-red-600' }}">{{ $event->status ? 'Active' : 'Inactive' }}</span></p>
     </div>
 
-    <div class="mt-6 flex justify-end">
+    <!--<div class="mt-6 flex justify-end">
         <a class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-amber-500 hover:text-red-600 transition duration-200 ease-in-out" href="{{ route('events.edit', $event->id) }}">EDIT</a>
-    </div>
+    </div> -->
 </x-app-layout>

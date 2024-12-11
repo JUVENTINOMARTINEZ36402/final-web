@@ -15,16 +15,16 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Menú principal') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
-                        {{ __('Eventos') }}
-                    </x-nav-link>
 
                     <x-nav-link :href="route('events.create')" :active="request()->routeIs('dashboard')">
                         {{ __('Crear') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.index')">
-                        {{ __('Boletos') }}
+                        {{ __('Mis compras') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
+                        {{ __('Eventos') }}
                     </x-nav-link>
 
 
@@ -84,9 +84,6 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Menú principal') }}
 
-                <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
-                    {{ __('Eventos') }}
-                </x-nav-link>
 
                 <x-nav-link :href="route('events.create')" :active="request()->routeIs('dashboard')">
                     {{ __('Crear') }}
@@ -94,6 +91,10 @@
 
                 <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.index')">
                     {{ __('Boletos') }}
+                </x-nav-link>
+
+                <x-nav-link :href="route('events.index')" :active="request()->routeIs('dashboard')">
+                    {{ __('Eventos') }}
                 </x-nav-link>
             </x-responsive-nav-link>
         </div>
