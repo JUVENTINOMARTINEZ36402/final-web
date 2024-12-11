@@ -14,7 +14,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
+
+        $events = Event::where('user_id', auth()->id())->get();
+
         return view('events.index', compact('events'));
     }
 
@@ -44,7 +46,19 @@ class EventController extends Controller
             'status' => 'required|boolean',
         ]);
 
-        Event::create($request->all());
+        Event::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'event_date' => $request->event_date,
+            'location' => $request->location,
+            'status' => $request->status,
+            'user_id' => auth()->id(), // Asociar el evento al usuario autenticado
+        ]);
+
+        // Cambia el rol del usuario a "admin" después de crear el evento
+        $user = auth()->user();
+        $user->update(['role' => 'admin']);
+
 
         return redirect()->route('events.index')->with('success', 'Event created successfully.');
     }

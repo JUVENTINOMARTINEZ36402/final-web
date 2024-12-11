@@ -7,7 +7,7 @@
                 <!-- Event Info -->
                 <div class="text-gray-700">
                     <span class="font-semibold text-lg">{{ $event->title }}</span>
-                    <span class="text-sm text-gray-500">({{ $event->event_date }})</span>
+                    <span class="text-sm text-gray-500">({{ \Carbon\Carbon::parse($event->event_date)->format('F j, Y, g:i A') }})</span>
                     <span class="text-gray-600">- {{ $event->location }}</span>
                 </div>
 
