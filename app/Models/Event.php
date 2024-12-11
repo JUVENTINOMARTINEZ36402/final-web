@@ -21,8 +21,13 @@ class Event extends Model
         'location',     // Correct field name
         'logo_image',   // Added logo image
         'status',       // Added status
+        'user_id',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * The attributes that should be cast to native types.
      *
