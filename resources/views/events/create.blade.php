@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Crea tu evento, será el mejor. 👌😁</h2>
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Crear Evento Nuevo ➕</h2>
 
     <form method="POST" action="{{ route('events.store') }}" enctype="multipart/form-data" class="space-y-6 bg-white p-6 rounded-lg shadow-md">
         @csrf

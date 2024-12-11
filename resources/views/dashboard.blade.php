@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+        <h2 class="font-semibold text-3xl text-gray-800 leading-tight">
+            {{ __('Eventify') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,7 @@
         <!-- Welcome Message -->
         <div class="bg-blue-500 text-white rounded-lg shadow-md p-6">
             <h1 class="text-3xl font-bold">Hola, {{ Auth::user()->name }}!</h1>
-            <p class="mt-4 text-lg">Here's an overview of the upcoming events.</p>
+            <p class="mt-4 text-lg">Bienvenido al Panel de Eventos.</p>
         </div>
 
         <!-- Upcoming Events Section -->
@@ -21,7 +21,11 @@
                         <h3 class="text-lg font-semibold">{{ $event->title }}</h3>
                         <p class="text-gray-600">{{ \Carbon\Carbon::parse($event->event_date)->format('d M Y') }}</p>
                         <a href="{{ route('events.show', $event->id) }}" class="text-blue-500 hover:underline">Detalles</a>
+                        <a href="{{ route('tickets.buy', $event->id) }}" class="mt-2 inline-block text-white bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+                            Comprar boletos
+                        </a>
                     </div>
+
                 @endforeach
             </div>
         </div>

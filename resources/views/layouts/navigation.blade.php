@@ -19,9 +19,14 @@
                         {{ __('Eventos') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Crea eventos') }}
+                    <x-nav-link :href="route('events.create')" :active="request()->routeIs('dashboard')">
+                        {{ __('Crear') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.index')">
+                        {{ __('Boletos') }}
+                    </x-nav-link>
+
 
 
                 </div>
